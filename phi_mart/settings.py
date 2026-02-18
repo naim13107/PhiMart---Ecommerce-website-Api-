@@ -103,12 +103,22 @@ INTERNAL_IPS = [
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.parse(
-        config('DATABASE_URL'), conn_max_age=600, ssl_require=True
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.parse(
+#         config('DATABASE_URL'), conn_max_age=600, ssl_require=True
+#     )
+# }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('dbname'),
+        'USER': config('user'),
+        'PASSWORD': config('password') ,
+        'HOST': config('host'),
+        'PORT': config('port')
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
