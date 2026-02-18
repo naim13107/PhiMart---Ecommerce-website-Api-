@@ -86,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'phi_mart.wsgi.app'
+WSGI_APPLICATION = 'phi_mart.wsgi.application'
 
 INTERNAL_IPS = [
     # ...
@@ -104,8 +104,11 @@ INTERNAL_IPS = [
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'))
+    'default': dj_database_url.parse(
+        config('DATABASE_URL'), conn_max_age=600, ssl_require=True
+    )
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
